@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="veli"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-06-28 01:00:10 PM"/>
+        <attribute name="created" value="dmVsaTtERVNLVE9QLUwxUk1LSEw7MjAyMC0wNi0yNzsxMDo1MjoxNyBQTTsyODAx"/>
+        <attribute name="edited" value="dmVsaTtERVNLVE9QLUwxUk1LSEw7MjAyMC0wNi0yODswMTowMDoxMCBQTTs3OzI5MDI="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Author: Veli Z. Eroglu 395223&#13;&#10;LICENSE : GPLV3&#13;&#10;DESC: Muller-Rabin Asall&#305;k Algoritmas&#305;"/>
+            <declare name="num, t" type="Integer" array="False" size=""/>
+            <output expression="&quot;Hangi say&#305;n&#305;n asall&#305;&#287;&#305; test edilecek ?&quot;" newline="True"/>
+            <input variable="num"/>
+            <output expression="&quot;Deneme ust limiti (t sayisi):&quot;" newline="True"/>
+            <input variable="t"/>
+            <if expression="isPrime(num,t)">
+                <then>
+                    <output expression="&quot;asal&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;asal degil&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="isPrime" type="Boolean" variable="res">
+        <parameters>
+            <parameter name="n" type="Integer" array="False"/>
+            <parameter name="k" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i, a" type="Integer" array="False" size=""/>
+            <declare name="res" type="Boolean" array="False" size=""/>
+            <for variable="i" start="1" end="k" direction="inc" step="1">
+                <comment text="a rasgele say&#305;s&#305;n&#305; uretiyoruz flowgrothimde rasgele say&#305; uretirken alt limit belirlemek m&#252;nk&#252;n olmad&#305;&#287;&#305;ndan 0 ve 1 den ka&#231;&#305;nmak i&#231;in +2 ekliyoruz."/>
+                <assign variable="a" expression="Random(int(n-3))+2"/>
+                <if expression="isStrongPrime(n, a, i) == 1">
+                    <then>
+                        <assign variable="res" expression="true"/>
+                    </then>
+                    <else>
+                        <assign variable="res" expression="false"/>
+                    </else>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="isStrongPrime" type="Integer" variable="res">
+        <parameters>
+            <parameter name="n" type="Integer" array="False"/>
+            <parameter name="a" type="Integer" array="False"/>
+            <parameter name="i" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <comment text="bu fonksiyon n parametresi icin sayi, a parametresi icin rasgele uretilen sayi ve i icin iterasyon sayisini parametre olarak tutar iterasyon sayisini gondermemizin nedeni outputu duzgun iletmek."/>
+            <declare name="d, s, t, res" type="Integer" array="False" size=""/>
+            <assign variable="res" expression="0"/>
+            <assign variable="d" expression="n-1"/>
+            <assign variable="s" expression="0"/>
+            <comment text="(n-1)=(2^k)*m e&#351;itle&#287;indeki k ve m yi buluyoruz"/>
+            <while expression="d % 2 == 0">
+                <assign variable="d" expression="d / 2"/>
+                <assign variable="s" expression="s + 1"/>
+            </while>
+            <if expression="i==1">
+                <then>
+                    <output expression="&quot;1. adim k ve m nin bulunmasi&quot;" newline="True"/>
+                    <output expression="&quot;K=&quot; &amp; s &amp; &quot;,M=&quot; &amp; d &amp; &quot; (2^&quot; &amp; s &amp; &quot;)*&quot; &amp; d &amp; &quot;=&quot; &amp; (n-1)" newline="True"/>
+                    <output expression="&quot;2.adim 1&lt;a&lt;n-1 rasgele bir sayi secilir...&quot;" newline="True"/>
+                    <output expression="&quot;a=&quot; &amp; a" newline="True"/>
+                    <output expression="&quot;3.adim b0=b0^m mod n hesaplamas&#305; ve asall&#305;k karar&#305;&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <comment text="modu hesapl&#305;yoruz"/>
+            <assign variable="t" expression="powerMod(a, d, n)"/>
+            <if expression="t == 1">
+                <then>
+                    <assign variable="res" expression="1"/>
+                </then>
+                <else>
+                    <while expression="s &gt; 0">
+                        <output expression="&quot;b0: &quot; &amp; t" newline="True"/>
+                        <if expression="t == n -1">
+                            <then>
+                                <assign variable="res" expression="1"/>
+                                <assign variable="s" expression="0"/>
+                            </then>
+                            <else>
+                                <assign variable="t" expression="(t * t) % n"/>
+                                <assign variable="s" expression="s -1"/>
+                            </else>
+                        </if>
+                    </while>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="powerMod" type="Integer" variable="x">
+        <parameters>
+            <parameter name="b" type="Integer" array="False"/>
+            <parameter name="e" type="Integer" array="False"/>
+            <parameter name="m" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="x" type="Integer" array="False" size=""/>
+            <assign variable="x" expression="1"/>
+            <while expression="e &gt; 0">
+                <if expression="e % 2 == 1">
+                    <then>
+                        <assign variable="x" expression="(b*x) % m"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="b" expression="(b * b) % m"/>
+                <assign variable="e" expression="e / 2"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>

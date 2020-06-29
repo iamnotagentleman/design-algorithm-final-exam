@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Frost"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-06-28 01:05:22 PM"/>
+        <attribute name="created" value="RnJvc3Q7REVTS1RPUC1ISkxCU0JDOzIwMjAtMDYtMjY7MTA6NDg6NDkgUE07MjkwMQ=="/>
+        <attribute name="edited" value="RnJvc3Q7REVTS1RPUC1ISkxCU0JDOzIwMjAtMDYtMjc7MDE6MjA6MDkgUE07MjsyOTk3"/>
+        <attribute name="edited" value="dmVsaTtERVNLVE9QLUwxUk1LSEw7MjAyMC0wNi0yODswMTowNDozNiBQTTsxO3ZlbGk7REVTS1RPUC1MMVJNS0hMOzIwMjAtMDYtMjc7MTA6NTI6MTcgUE07Mzk1MjIzLUFsZ29yaXRtYS1UYXNhcm0tRmluYWwtcGFydDIoYXNhbGxpaykuZnByZzsxMDEzNw=="/>
+        <attribute name="edited" value="dmVsaTtERVNLVE9QLUwxUk1LSEw7MjAyMC0wNi0yODswMTowNToyMiBQTTszOzI5MDY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Author: Veli Z. Eroglu 395223&#13;&#10;LICENSE : GPLV3&#13;&#10;DESC: e^x'i sonsuz seri ile hesaplama"/>
+            <declare name="x, i" type="Integer" array="False" size=""/>
+            <declare name="sum, term, factorial, e" type="Real" array="False" size=""/>
+            <assign variable="i" expression="1"/>
+            <assign variable="factorial" expression="1"/>
+            <assign variable="sum" expression="1"/>
+            <assign variable="term" expression="1"/>
+            <assign variable="e" expression="0.000001"/>
+            <output expression="&quot;L&#252;tfen x De&#287;erini Giriniz: &quot;" newline="True"/>
+            <input variable="x"/>
+            <while expression="term &gt; e">
+                <output expression="&quot;[&quot;&amp;i&amp;&quot;] Toplam: &quot; &amp; sum" newline="True"/>
+                <assign variable="factorial" expression="factorial * i"/>
+                <assign variable="term" expression="(x^i)/factorial"/>
+                <assign variable="sum" expression="sum + term"/>
+                <assign variable="i" expression="i + 1"/>
+            </while>
+            <output expression="&quot;E-6 elde edildi.&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
